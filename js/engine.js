@@ -132,9 +132,7 @@ var Engine = (function(global) {
      * @description End game and showing description
      */
     function endGame() {
-        const message = `Good Job!
-            Your score is: ${score}
-            Want to play again?`;
+        const message = `Yay!: ${score}`;
 
         if (playerLives === 0) {
             swal("Sorry! Try again!")
@@ -161,7 +159,7 @@ var Engine = (function(global) {
         // player.update();
         if(player.update() <= 10) {
             player.y = 390;
-            setScore("FINISH!!!")
+            setScore("FINISH!!!");
         }
     }
 
@@ -173,7 +171,7 @@ var Engine = (function(global) {
         switch(scoreCondition) {
             case "FINISH!!!":
                 playerScore += 20;
-                scoreCnt.innerHTML = score;
+                scoreCnt.innerHTML = playerScore;
                 break;
         }
     }
