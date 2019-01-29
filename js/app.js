@@ -8,6 +8,20 @@ function randomInt(min, max) {
 }
 
 
+// Defining keys for arrows
+const UP = 'up';
+const DOWN = 'down';
+const LEFT = 'left';
+const RIGHT = 'right';
+
+// Constants to maintain top, bottom, left and right of player area
+// This will help stop the player from going out of playing area
+const PLAY_AREA_TOP = -35;
+const PLAY_AREA_BOTTOM = 390;
+const PLAY_AREA_LEFT = 0;
+const PLAY_AREA_RIGHT = 400;
+
+
 /*
  * @description The Enemy Object
  */
@@ -67,11 +81,61 @@ class Player extends Enemy {
         return this.y;
     }
 
+    /**
+     * @description Move player Down
+     */
+    moveDown() {
+        if(this.y < PLAY_AREA_BOTTOM) {
+            this.y += 85;
+        }
+    }
+
+    /**
+     * @description Move player Up
+     */
+    moveUp() {
+        if(this.y > PLAY_AREA_TOP) {
+            this.y -= 85;
+        }
+    }
+
+    /**
+     * @description Move player Left
+     */
+    moveLeft() {
+        if(this.x > PLAY_AREA_LEFT) {
+            this.x -= 100;
+        }
+    }
+
+    /**
+     * @description Move player Right
+     */
+    moveRight() {
+        if(this.x < PLAY_AREA_RIGHT) {
+            this.x += 100;
+        }
+    }
+
     /*
-     * @description A do-nothing handle input method.
+     * @description Move the player as per key input
+     * @param {keycode} The key input from the player
      */
     handleInput(keyCode) {
-        //TODO: Implementation pending
+        switch(keyCode) {
+            case UP:
+                this.moveUp();
+                break;
+            case DOWN:
+                this.moveDown();
+                break;
+            case LEFT:
+                this.moveLeft();
+                break;
+            case RIGHT:
+                this.moveRight();
+                break;
+        }
     }
 }
 
@@ -89,10 +153,10 @@ let player = new Player(200, 500);
 // Player.handleInput() method. You don't need to modify this.
 document.addEventListener('keyup', function(e) {
     var allowedKeys = {
-        37: 'left',
-        38: 'up',
-        39: 'right',
-        40: 'down'
+        37: LEFT,
+        38: UP,
+        39: RIGHT,
+        40: DOWN
     };
 
     player.handleInput(allowedKeys[e.keyCode]);
