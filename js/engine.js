@@ -28,6 +28,18 @@ var Engine = (function(global) {
     canvas.height = 606;
     doc.body.appendChild(canvas);
 
+    // Set Player lives and score
+    let playerLives = 3;
+    let playerScore = 0;
+
+    // Setting the container for number of lives
+    const playerLivesCnt = document.querySelector("#lives");
+    playerLivesCnt.innerHTML = playerLives;
+
+    // Set the conatiner for the score
+    const scoreCnt = document.querySelector("#score");
+    scoreCnt.innerHTML = playerScore;
+
     /* This function serves as the kickoff point for the game loop itself
      * and handles properly calling the update and render methods.
      */
@@ -79,7 +91,59 @@ var Engine = (function(global) {
      */
     function update(dt) {
         updateEntities(dt);
-        // checkCollisions();
+        checkCollisions();
+    }
+
+    /**
+     * @description Check is a collision has occurred
+     */
+    function checkCollisions() {
+        for (enemy of allEnemies) {
+            if (player.x < enemy.x + enemy.width &&
+                player.x + player.width > enemy.x &&
+                player.y < enemy.y + enemy.height &&
+                player.height + player.y > enemy.y) {
+                // Delete a life
+                decrementLife();
+            }
+        }
+    }
+
+
+    /**
+     * @description Decrement player life.
+     */
+    function decrementLife() {
+
+        // Decrease player lives
+        playerLives--;
+        playerLivesCnt.innerHTML = playerLives;
+        
+        // Return the `Player` character to the starter position
+        player.y = 390;
+
+        // Check if the user have `lives` or not
+        if(playerLives === 0) {
+            endGame();
+        }
+    }
+
+    /**
+     * @description End game and showing description
+     */
+    function endGame() {
+        const message = `Good Job!
+            Your score is: ${score}
+            Want to play again?`;
+
+        if (playerLives === 0) {
+            swal("Sorry! Try again!")
+        } else {
+            swal(message);
+        }
+
+        // Reset Variables
+        reset();
     }
 
     /* This is called by the update function and loops through all of the
@@ -93,7 +157,25 @@ var Engine = (function(global) {
         allEnemies.forEach(function(enemy) {
             enemy.update(dt);
         });
-        player.update();
+        // Check if player has reached top
+        // player.update();
+        if(player.update() <= 10) {
+            player.y = 390;
+            setScore("FINISH!!!")
+        }
+    }
+
+    /**
+     * @description Set the player score
+     * @param {scoreCondition} The reason for score update
+     */
+    function setScore(scoreCondition) {
+        switch(scoreCondition) {
+            case "FINISH!!!":
+                playerScore += 20;
+                scoreCnt.innerHTML = score;
+                break;
+        }
     }
 
     /* This function initially draws the "game level", it will then call
@@ -161,7 +243,12 @@ var Engine = (function(global) {
      * those sorts of things. It's only called once by the init() method.
      */
     function reset() {
-        // noop
+        // Set the number of lives that the player has
+        playerLives = 3;
+        playerLivesCnt.innerHTML = playerLives;
+        // Reset the player score
+        playerScore = 0;
+        scoreCnt.innerHTML = 0;
     }
 
     /* Go ahead and load all of the images we know we're going to need to

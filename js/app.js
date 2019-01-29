@@ -16,7 +16,7 @@ const RIGHT = 'right';
 
 // Constants to maintain top, bottom, left and right of player area
 // This will help stop the player from going out of playing area
-const PLAY_AREA_TOP = -35;
+const PLAY_AREA_TOP = 10;
 const PLAY_AREA_BOTTOM = 390;
 const PLAY_AREA_LEFT = 0;
 const PLAY_AREA_RIGHT = 400;
@@ -143,9 +143,9 @@ class Player extends Enemy {
 let enemy1 = new Enemy(1, 60);
 let enemy2 = new Enemy(-100, 140);
 let enemy3 = new Enemy(200, 220);
-let enemy4 = new Enemy(-150, 310);
+//let enemy4 = new Enemy(-150, 310);
 // Place all enemy objects in an array called allEnemies
-let allEnemies = [enemy1, enemy2, enemy3, enemy4];
+let allEnemies = [enemy1, enemy2, enemy3];
 // Place the player object in a variable called player
 let player = new Player(200, 500);
 
