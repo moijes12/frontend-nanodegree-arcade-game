@@ -134,13 +134,10 @@ var Engine = (function(global) {
      * @description End game and showing description
      */
     function endGame() {
-        const message = `Yay!: ${score}`;
+        const message = `Game over! Your final score is: ${playerScore}!`;
 
-        if (playerLives === 0) {
-            swal("Sorry! Try again!")
-        } else {
-            swal(message);
-        }
+        // Display an end message
+        swal(message);
 
         // Reset Variables
         reset();
