@@ -1,20 +1,17 @@
 # Classic Arcade Game Clone Project
 
 ## Table of Contents
-
+- [About](#about)
 - [Instructions](#instructions)
-- [Contributing](#contributing)
+
+## About
+This is the Arcade Game Project built as a requirement for my Front End Nano Degree. This project is built with JavaScript.
 
 ## Instructions
 
-Use this [rubric](https://review.udacity.com/#!/rubrics/15/view) for self-checking your submission.
+Below are instructions on how to play.
+1. To open the game, open the **index.html** file in a browser of your choice.
+1. The task is to move the player from bottom to the water at the top without colliding with the bugs. To do this, make use of the Up, Down, Left and Right arrow keys on the keyboard.
+1. Each time the player reaches the water, he gets 20 points.
+1. Each time the player collides with a bug, he looses a life. A player has 3 lives in total.
 
-Make sure the functions you write are **object-oriented** - either class functions (like `Player` and `Enemy`) or class prototype functions such as `Enemy.prototype.checkCollisions`. Also make sure that the keyword `this` is used appropriately within your class and class prototype functions to refer to the object the function is called upon.
-
-Your **README.md** file should be updated with instructions on both how to 1. Run and 2. Play your arcade game.
-
-For detailed instructions on how to get started, check out this [guide](https://docs.google.com/document/d/1v01aScPjSWCCWQLIpFqvg3-vXLH2e8_SZQKC8jNO0Dc/pub?embedded=true).
-
-## Contributing
-
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
