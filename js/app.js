@@ -1,3 +1,5 @@
+"use strict";
+
 /*
  * @description Get a random Integer between min and max.
  */

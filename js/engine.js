@@ -1,3 +1,5 @@
+"use strict";
+
 /* Engine.js
  * This file provides the game loop functionality (update entities and render),
  * draws the initial game board on the screen, and then calls the update and
@@ -98,7 +100,7 @@ var Engine = (function(global) {
      * @description Check is a collision has occurred
      */
     function checkCollisions() {
-        for (enemy of allEnemies) {
+        for (let enemy of allEnemies) {
             if (player.x < enemy.x + enemy.width &&
                 player.x + player.width > enemy.x &&
                 player.y < enemy.y + enemy.height &&
